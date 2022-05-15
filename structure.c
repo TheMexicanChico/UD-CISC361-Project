@@ -2,35 +2,6 @@
 #include <limits.h>
 #include "structure.h"
 
-
-typedef struct config {
-   int arrivalTime;
-   int memory;
-   int devices;
-   int quantumTime;
-}config;
-
-typedef struct job {
-   int jobID;
-   int priority;
-   int arrivalTime;
-   int memory;
-   int devices;
-   int runTime;
-}job;
-
-typedef struct request {
-   int timeStamp;
-   int jobID;
-   int devices;
-}request;
-
-typedef struct release {
-   int timeStamp;
-   int jobID;
-   int devices; 
-}release;
-
 // Sample code, not done yet [Just an idea]
 void initialize_config(config c[], int size) {
    for(int i=0; i<size; i++){
@@ -67,4 +38,3 @@ void initialize_release(release c[], int size) {
       c[i].devices=0;
    }
 }
-
