@@ -9,15 +9,14 @@ Find Length of Linked Lists: https://www.geeksforgeeks.org/find-length-of-a-link
 Append to Linked List: https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/
 */
 
-JobRef* headRef;
-headRef = NULL;
-JobRef* jobList;
+job* headRef = NULL;
+job* jobList = NULL;
 
-int list_length(JobRef* head) {
+int list_length(job* head) {
     // find the length of a given linked list
 
     int length = 0;
-    JobRef* current = head;
+    job* current = head;
 
     while (current) {
         length++;
@@ -26,16 +25,15 @@ int list_length(JobRef* head) {
     return length;
 }
 
-void split_list(JobRef* jobList, JobRef** headHalf, JobRef** tailHalf) { // TODO
+void split_list(job* jobList, job** headHalf, job** tailHalf) { // TODO
     // split the linked list
     
-    JobRef* splitX;
-    JobRef* splitY;
+    job* splitX = jobList;
+    job* splitY = jobList->next;
     
-    splitX = jobList;
-    splitY = jobList->next;
-
-    // find the midpoint of the list
+    // find the midpoint of the list 
+    //^ Y incremented twice, X incremented once
+    //^ X stops at midpoint (or one before it for odd length)
     while (splitY) {
         splitY = splitY->next;
         if (splitY) {
@@ -57,58 +55,60 @@ void split_list(JobRef* jobList, JobRef** headHalf, JobRef** tailHalf) { // TODO
     splitX->next = NULL;
 }
 
-JobRef* merge_queue(int** JobTable, JobRef* listX, JobRef* listY) {
+job* merge_queue(job* jobX, job* jobY) {
     // recursively sort the lists by burst time
     
-    JobRef* smallerBurst;
+    job* shorterJob;
 
     // if either node is NULL, return the other
-	if (!listX) 
-		return (listY); 
-	else if (!listY) 
-		return (listX); 
+	if (!jobX) {
+        return (jobY); 
+    } else if (!jobY) {
+		return (jobX); 
+    }
 
-    // grab the table IDs of the jobs
-    int jobX = listX->tableID;
-    int jobY = listY->tableID;
-
-	// recursively merging two lists
-	if (JobTable[jobX][4] <= JobTable[jobY][4]) {
-		smallerBurst = listX; 
-		smallerBurst->next = MergeSortedList(listX->next, listY); 
+    // recursively merging two lists based on burst time
+	if (jobX->burstTime <= jobY->burstTime) {
+		shorterJob = jobX; 
+		shorterJob->next = merge_queue(jobX->next, jobY); 
+	} else { 
+		shorterJob = jobY; 
+		shorterJob->next = merge_queue(jobX, jobY->next); 
 	} 
-	else { 
-		smallerBurst = listY; 
-		smallerBurst->next = MergeSortedList(listX, listY->next); 
-	} 
-	return smallerBurst;
+	return shorterJob;
 }
 
-void sort_queue(int** JobTable, JobRef* jobList) { 
+void sort_queue(job* jobList) { 
     // sort the linked list with MergeSort
 
+    // cannot sort less than two nodes
 	if (!(jobList) || !(jobList->next)) { 
 		return; 
 	} 
 
-    JobRef* headHalf;
-    JobRef* tailHalf;
+    job* headHalf;
+    job* tailHalf;
 
     // split the list
     split_list(jobList, &headHalf, &tailHalf);
 
     // recursively sort the two lists
-    sort_queue(JobTable, &headHalf);
-    sort_queue(JobTable, &tailHalf);
+    sort_queue(&headHalf);
+    sort_queue(&tailHalf);
 
-    jobList = merge_queue(JobTable, headHalf, tailHalf);
+    jobList = merge_queue(headHalf, tailHalf);
 }
 
-void sjf_hold_queue(int** JobTable, JobRef* currentJob) {
+void sjf_hold_queue(job* currentJob) {
     // create, append to, and sort the hold queue
 
+    // make sure the job is not connected to anything
+    currentJob->next = NULL;
+    
     if (!headRef) {
         jobList = currentJob;
+    } else if (!jobList->next) {
+        jobList->next = currentJob;
     } else {
         headRef = jobList;
         while (jobList->next) {
@@ -116,6 +116,6 @@ void sjf_hold_queue(int** JobTable, JobRef* currentJob) {
         }
         jobList->next = currentJob;
         jobList = headRef;
-        sort_queue(JobTable, jobList);
+        sort_queue(jobList);
     }
 }
