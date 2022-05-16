@@ -4,11 +4,10 @@
 
 typedef struct JobRef {
     int tableID;
+    int devices;
     struct JobRef *head;
     struct JobRef *tail;
     struct JobRef *next;
 }JobRef;
 
-void initialize_queue();
-void sort_queue(struct JobRef *jobList, int listLen);
-void hold_queue_sjf(struct JobRef *current_job);
+void waitQueue(struct JobRef *current_job);

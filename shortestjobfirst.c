@@ -26,7 +26,7 @@ void sort_queue(struct JobRef *jobList, int listLen) {
     }
 }
 
-void hold_queue(struct JobRef *current_job) {
+void hold_queue_sjf(struct JobRef *current_job) {
     int listLen = 1;
     if (jobList->head == NULL) {
         initialize_queue(jobList);
