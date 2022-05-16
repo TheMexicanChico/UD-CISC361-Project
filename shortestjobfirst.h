@@ -4,11 +4,11 @@
 
 typedef struct JobRef {
     int tableID;
-    struct JobRef *head;
-    struct JobRef *tail;
-    struct JobRef *next;
+    struct JobRef* next;
 }JobRef;
 
-void initialize_queue();
-void sort_queue(struct JobRef *jobList, int listLen);
-void hold_queue(struct JobRef *current_job);
+void list_length(JobRef* head);
+void split_list(JobRef* jobList, JobRef** headHalf, JobRef** tailHalf);
+JobRef* merge_queue(JobRef* listX, JobRef* listY);
+void sort_queue(JobRef** jobList);
+void hold_queue(JobRef* currentJob);
