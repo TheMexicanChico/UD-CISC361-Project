@@ -11,4 +11,4 @@ void list_length(JobRef* head);
 void split_list(JobRef* jobList, JobRef** headHalf, JobRef** tailHalf);
 JobRef* merge_queue(JobRef* listX, JobRef* listY);
 void sort_queue(JobRef** jobList);
-void hold_queue(JobRef* currentJob);
+void sjf_hold_queue(JobRef* currentJob);

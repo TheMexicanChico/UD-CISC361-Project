@@ -9,6 +9,10 @@ Find Length of Linked Lists: https://www.geeksforgeeks.org/find-length-of-a-link
 Append to Linked List: https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/
 */
 
+JobRef* headRef = malloc(sizeof(JobRef));
+headRef = NULL;
+JobRef* jobList = malloc(sizeof(JobRef));
+
 void list_length(JobRef* head) {
     // find the length of a given linked list
 
@@ -100,21 +104,18 @@ void sort_queue(JobRef** jobList) {
     *jobList = merge_queue(headHalf, tailHalf);
 }
 
-void hold_queue(JobRef* currentJob, int initialized) {
+void sjf_hold_queue(JobRef* currentJob, int initialized) {
     // create, append to, and sort the hold queue
 
-    if (!initialized) {
-        JobRef* jobList = malloc(sizeof(JobRef));
+    if (!headRef) {
         jobList = currentJob;
-
     } else {
-        JobRef* headRef = malloc(sizeof(JobRef));
         headRef = jobList;
         while (jobList->next) {
             jobList = jobList->next;
         }
         jobList->next = currentJob;
-        joblist = headRef;
+        jobList = headRef;
         sort_queue(&jobList);
     }
 }
