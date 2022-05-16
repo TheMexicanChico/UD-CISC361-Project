@@ -28,13 +28,12 @@ int list_length(job* head) {
 void split_list(job* jobList, job** headHalf, job** tailHalf) { // TODO
     // split the linked list
     
-    job* splitX;
-    job* splitY;
+    job* splitX = jobList;
+    job* splitY = jobList->next;
     
-    splitX = jobList;
-    splitY = jobList->next;
-
-    // find the midpoint of the list
+    // find the midpoint of the list 
+    //^ Y incremented twice, X incremented once
+    //^ X stops at midpoint (or one before it for odd length)
     while (splitY) {
         splitY = splitY->next;
         if (splitY) {
@@ -56,36 +55,33 @@ void split_list(job* jobList, job** headHalf, job** tailHalf) { // TODO
     splitX->next = NULL;
 }
 
-job* merge_queue(job* listX, job* listY) {
+job* merge_queue(job* jobX, job* jobY) {
     // recursively sort the lists by burst time
     
-    job* smallerBurst;
+    job* shorterJob;
 
     // if either node is NULL, return the other
-	if (!listX) 
-		return (listY); 
-	else if (!listY) 
-		return (listX); 
+	if (!jobX) {
+        return (jobY); 
+    } else if (!jobY) {
+		return (jobX); 
+    }
 
-    // grab the table IDs of the jobs
-    int jobX = listX->tableID;
-    int jobY = listY->tableID;
-
-	// recursively merging two lists
-	if (JobTable[jobX][4] <= JobTable[jobY][4]) {
-		smallerBurst = listX; 
-		smallerBurst->next = merge_queue(listX->next, listY); 
+    // recursively merging two lists based on burst time
+	if (jobX->burstTime <= jobY->burstTime) {
+		shorterJob = jobX; 
+		shorterJob->next = merge_queue(jobX->next, jobY); 
+	} else { 
+		shorterJob = jobY; 
+		shorterJob->next = merge_queue(jobX, jobY->next); 
 	} 
-	else { 
-		smallerBurst = listY; 
-		smallerBurst->next = merge_queue(listX, listY->next); 
-	} 
-	return smallerBurst;
+	return shorterJob;
 }
 
 void sort_queue(job* jobList) { 
     // sort the linked list with MergeSort
 
+    // cannot sort less than two nodes
 	if (!(jobList) || !(jobList->next)) { 
 		return; 
 	} 
