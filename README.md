@@ -4,4 +4,4 @@
 
 Created by: 
 | <div style="float: left; text-align: center; padding: 10px"><img src="https://avatars.githubusercontent.com/u/60983762?v=4" height="30px" style="border-radius: 15px"><br><a href="https://github.com/renross">Ren Ross</a> </div> | <div style="float: left; text-align: center; padding: 10px;"><img src="https://avatars.githubusercontent.com/u/89875295?v=4" height="30px" style="border-radius: 15px"><br><a href="https://github.com/TheMexicanChico">Abel Juarez</a> </div> | <div style="float: left; text-align: center; padding: 10px;"><img src="https://avatars.githubusercontent.com/u/57141876?v=4" height="30px" style="border-radius: 15px"><br><a href="https://github.com/aerusin">Alex Rusin</a> </div> |
-|-|-|-|-
+|-|-|-
