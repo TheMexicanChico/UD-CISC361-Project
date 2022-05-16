@@ -5,11 +5,11 @@ Sources & References
 Append to Linked List: https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/
 */
 
-JobRef* headRef = malloc(sizeof(JobRef));
+JobRef* headRef;
 headRef = NULL;
-JobRef* jobList = malloc(sizeof(JobRef));
+JobRef* jobList;
 
-void fifo_hold_queue(JobRef* currentJob, int initialized) {
+void fifo_hold_queue(JobRef* currentJob) {
     // create and append to the hold queue
 
     if (!headRef) {

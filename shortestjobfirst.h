@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include "structure.h"
 
 typedef struct JobRef {
     int tableID;
     struct JobRef* next;
 }JobRef;
 
-void list_length(JobRef* head);
+int list_length(JobRef* head);
 void split_list(JobRef* jobList, JobRef** headHalf, JobRef** tailHalf);
-JobRef* merge_queue(JobRef* listX, JobRef* listY);
-void sort_queue(JobRef** jobList);
-void sjf_hold_queue(JobRef* currentJob);
+JobRef* merge_queue(int** JobTable, JobRef* listX, JobRef* listY);
+void sort_queue(int** JobTable, JobRef* jobList);
+void sjf_hold_queue(int** JobTable, JobRef* currentJob);

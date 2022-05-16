@@ -9,11 +9,11 @@ Find Length of Linked Lists: https://www.geeksforgeeks.org/find-length-of-a-link
 Append to Linked List: https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/
 */
 
-JobRef* headRef = malloc(sizeof(JobRef));
+JobRef* headRef;
 headRef = NULL;
-JobRef* jobList = malloc(sizeof(JobRef));
+JobRef* jobList;
 
-void list_length(JobRef* head) {
+int list_length(JobRef* head) {
     // find the length of a given linked list
 
     int length = 0;
@@ -29,8 +29,8 @@ void list_length(JobRef* head) {
 void split_list(JobRef* jobList, JobRef** headHalf, JobRef** tailHalf) { // TODO
     // split the linked list
     
-    JobRef* splitX = malloc(sizeof(JobRef));
-    JobRef* splitY = malloc(sizeof(JobRef));
+    JobRef* splitX;
+    JobRef* splitY;
     
     splitX = jobList;
     splitY = jobList->next;
@@ -57,10 +57,10 @@ void split_list(JobRef* jobList, JobRef** headHalf, JobRef** tailHalf) { // TODO
     splitX->next = NULL;
 }
 
-JobRef* merge_queue(JobRef* listX, JobRef* listY) {
+JobRef* merge_queue(int** JobTable, JobRef* listX, JobRef* listY) {
     // recursively sort the lists by burst time
     
-    JobRef* smallerBurst = malloc(sizeof(JobRef));
+    JobRef* smallerBurst;
 
     // if either node is NULL, return the other
 	if (!listX) 
@@ -84,27 +84,27 @@ JobRef* merge_queue(JobRef* listX, JobRef* listY) {
 	return smallerBurst;
 }
 
-void sort_queue(JobRef** jobList) { 
+void sort_queue(int** JobTable, JobRef* jobList) { 
     // sort the linked list with MergeSort
 
-	if (!(*jobList) || !(*jobList->next)) { 
+	if (!(jobList) || !(jobList->next)) { 
 		return; 
 	} 
 
-    JobRef* headHalf = malloc(sizeof(JobRef));
-    JobRef* tailHalf = malloc(sizeof(JobRef));
+    JobRef* headHalf;
+    JobRef* tailHalf;
 
     // split the list
-    split_list(*jobList, &headHalf, &tailHalf);
+    split_list(jobList, &headHalf, &tailHalf);
 
     // recursively sort the two lists
-    sort_queue(&headHalf);
-    sort_queue(&tailHalf);
+    sort_queue(JobTable, &headHalf);
+    sort_queue(JobTable, &tailHalf);
 
-    *jobList = merge_queue(headHalf, tailHalf);
+    jobList = merge_queue(JobTable, headHalf, tailHalf);
 }
 
-void sjf_hold_queue(JobRef* currentJob, int initialized) {
+void sjf_hold_queue(int** JobTable, JobRef* currentJob) {
     // create, append to, and sort the hold queue
 
     if (!headRef) {
@@ -116,6 +116,6 @@ void sjf_hold_queue(JobRef* currentJob, int initialized) {
         }
         jobList->next = currentJob;
         jobList = headRef;
-        sort_queue(&jobList);
+        sort_queue(JobTable, jobList);
     }
 }
