@@ -13,7 +13,7 @@ void initialize_config(config* head, int size) {
 void initialize_Job(job* head, int size) {
    job* headRef = head;
    job* currentJob;
-   int arrivalTime, memory, devices, jobID, priority, memory, runtime;
+   int arrivalTime, memory, devices, jobID, priority, runtime;
    while(head){
       currentJob->jobID=head->jobID;
       currentJob->priority=head->priority;
@@ -34,7 +34,7 @@ void initialize_request(job* requestJob, int size) {
    if (configFile->quantumTime <= 0) {
 
    } else {
-
+      // TODO
    }
 }
 

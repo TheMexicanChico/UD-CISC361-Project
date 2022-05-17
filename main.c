@@ -1,14 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include "structure.c"
 #include <ctype.h>
 #include <math.h>
+#include "shortestjobfirst.c"
 #include "firstinout.c"
-#include <limits.h>
-#include "shortestjobfirst.h"
-int main()
-{
+
+int main() {
 //https://stackoverflow.com/questions/13499866/read-from-text-file-only-numbers-in-c
     char symb ;
     unsigned char symb1;
@@ -16,9 +12,8 @@ int main()
     int arr[6];
     char temp[3];
     int count = 0;
-    int job = 0;
     int arrCount = 0;
-    struct config c;
+    config c;
     int memory;
     int devices;
     int time;
@@ -60,19 +55,20 @@ int main()
                 memset(arr, 0, 6);
                 letter = symb1;
             }else if(letter == 'A'){
-                struct job j = {.arrivalTime = arr[0], .jobID = arr[1], .memory = arr[2], .devices = arr[3], .burstTime = arr[4], .priority = arr[5]};
-                if(j.memory <= c.memory){
-                    if(j.memory > memory){
-                        if(j.priority == 1){
-                            fifo_hold_queue(&j);
+                job* j = {arr[1], arr[0], arr[5], arr[2], arr[3], arr[4]};
+                if (j->memory <= c.memory){
+                    if(j->memory > memory){
+                        if(j->priority == 1){
+                            fifo_hold_queue(j);
                         }else{
                             // TODO
                         }
                     }
-                    if(j.devices <= c.devices){
+                    if (j->devices <= c.devices){
                         //send to ready queue
-                        memory-= j.memory;
-                    }else{
+                        memory -= j->memory;
+                    } else{
+                        // TODO
                     }
                 }
                 memset(arr, 0, 6);
@@ -90,7 +86,7 @@ int main()
         }
         }
     fclose (file); 
-    for(int i=0;i<job;i++){
+    for(int i=0;i<jobCounter;i++){
         for(int j = 0; j <= 5; j++){
             //printf("%d ", jobTable[i][j]);
         }

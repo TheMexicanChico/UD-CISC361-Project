@@ -1,6 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
+#ifndef BANKER_H
+#define BANKER_H
+#include "structure.h"
 
 typedef struct JobRef {
     int tableID;
@@ -11,3 +11,5 @@ typedef struct JobRef {
 }JobRef;
 
 void banker(struct JobRef *current_job)
+
+#endif // BANKER_H
