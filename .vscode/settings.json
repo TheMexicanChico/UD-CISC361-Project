@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "shortestjobfirst.h": "c"
+        "shortestjobfirst.h": "c",
+        "structure.h": "c"
     }
 }
