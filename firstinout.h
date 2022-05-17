@@ -1,10 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include "structure.h"
 
-typedef struct JobRef {
-    int tableID;
-    struct JobRef* next;
-}JobRef;
-
-void fifo_hold_queue(JobRef* currentJob);
+void fifo_hold_queue(job* currentJob);
