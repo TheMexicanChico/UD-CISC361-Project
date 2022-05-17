@@ -2,5 +2,6 @@
     "files.associations": {
         "shortestjobfirst.h": "c",
         "structure.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

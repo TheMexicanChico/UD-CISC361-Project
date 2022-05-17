@@ -6,7 +6,13 @@
 #include <math.h>
 #include "firstinout.c"
 #include <limits.h>
-#include "shortestjobfirst.h"
+#include "shortestjobfirst.c"
+#include "readyqueue.c"
+#include "waitqueue.c"
+
+void lines(){
+    printf("--------------------------------------------------------");
+}
 int main()
 {
 //https://stackoverflow.com/questions/13499866/read-from-text-file-only-numbers-in-c
@@ -26,13 +32,19 @@ int main()
     file = fopen("i1.txt","rt");
     int jobCounter = 0;
     while ((symb=getc(file))!=EOF)
+    //iterates through every character in file till end of file
         {
         symb1= (unsigned char) symb;
          if(symb1 >= '0' && symb1 <='9'){
+        //checks to see if the character is a digit
             temp[count] = symb1;
             count++;
+            //adds the digit to a char array
         }else{
             if(count > 0){
+            //whenever a char isnt a digit and the count is greater than 0, the 
+            //char numbers are connected together if more than one and turned into an int
+            //which is then added to an array of numbers each specific intruction 
                 int l;
                 sscanf(temp, "%d", &l);
                 arr[arrCount] = l;
@@ -54,20 +66,20 @@ int main()
                 memset(arr, 0, 6);
                 letter = symb1;
             }else if(letter == 'A'){
-                struct job j = {.arrivalTime = arr[0], .jobID = arr[1], .memory = arr[2], .devices = arr[3], .runTime = arr[4], .priority = arr[5]};
+                struct job j* = {.arrivalTime = arr[0], .jobID = arr[1], .memory = arr[2], .devices = arr[3], .burstTime = arr[4], .priority = arr[5]};
                 if(j.memory <= c.memory){
                     if(j.memory > memory){
                         if(j.priority == 1){
-                            fifo_hold_queue(&j);
+                            fifo_hold_queue(j);
                         }else{
-                            sjf_hold_queue(&j);
+                            sjf_hold_queue(j);
                         }
                     }
-                    else if(j.devices <= c.devices){
-                        //send to ready queue
+                    else if(j.devices <= devices){
+                        ready_queue(j);
                         memory-= j.memory;
                     }else if(j.devices > devices){
-                        //send to hold queue
+                        wait_queue(j);
                     }
                 }
                 memset(arr, 0, 6);
@@ -82,12 +94,16 @@ int main()
                 letter = symb1;
             }else if(letter == 'D'){
                 printf("At time %d:\n Current Available Main Memory = %d\n Current Devices = %d", time, memory,devices);
-                time++;
+                printf("Completed Jobs: ");
+                lines();
+                printf("Job ID      Arrival Time        Finish Time     Turnaround Time");
+                lines();
+                lines();
+                time = time + c.arrivalTime;
             }
         }
         while(time < arr[0]){
-            if()
-            time++;
+            time = time + c.arrivalTime;
         }
         }
     fclose (file); 
