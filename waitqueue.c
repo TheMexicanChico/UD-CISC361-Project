@@ -8,7 +8,8 @@ job* wait_queue(job* currentJob) {
 
     // make sure the job is not connected to anything
     currentJob->next = NULL;
-    currentJob->queue = "W";
+    // 87 = W for waiting queue
+    currentJob->queue = 87;
     
     if (!headRef) {
         waitQueue = currentJob;

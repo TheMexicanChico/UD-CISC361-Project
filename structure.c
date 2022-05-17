@@ -17,7 +17,7 @@ void initialize_Job(job c[], int size) {
        c[i].arrivalTime=0;
        c[i].memory=0;
        c[i].devices=0;
-       c[i].runTime=0;
+       c[i].burstTime=0;
    }
 }
 

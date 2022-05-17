@@ -62,13 +62,13 @@ int main()
                 memset(arr, 0, 6);
                 letter = symb1;
             }else if(letter == 'A'){
-                struct job j = {.arrivalTime = arr[0], .jobID = arr[1], .memory = arr[2], .devices = arr[3], .runTime = arr[4], .priority = arr[5]};
+                struct job j = {.arrivalTime = arr[0], .jobID = arr[1], .memory = arr[2], .devices = arr[3], .burstTime = arr[4], .priority = arr[5]};
                 if(j.memory <= c.memory){
                     if(j.memory > memory){
                         if(j.priority == 1){
                             fifo_hold_queue(&j);
                         }else{
-                            s
+                            // TODO
                         }
                     }
                     if(j.devices <= c.devices){
@@ -104,7 +104,10 @@ int main()
 
 // when reading in jobs, first one with allowed memory allocation goes right to ready queue
 void get_job(job* jobReady, config c) {
-    int qTime = c.quantumTime 
+    int qTime = c.quantumTime;
+    // 67 = C for running on the CPU
+    jobReady->queue = 67;
+    
     while (qTime) {
         qTime -= 1;
         // 
@@ -115,7 +118,8 @@ void get_job(job* jobReady, config c) {
     }
     // context switch
     if (jobReady->burstTime > 0) {
-        jobReady->queue = "R";
+        // 82 = "R" for ready queue
+        jobReady->queue = 82;
         jobReady = ready_queue(jobReady);
     }
 }
