@@ -5,8 +5,8 @@ Sources & References
 Append to Linked List: https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/
 */
 
-job* headRef = NULL;
-job* jobList = NULL;
+job* fifoHeadRef = NULL;
+job* fifoQueue = NULL;
 
 job* fifo_hold_queue(job* currentJob) {
     // create and append to the hold queue
@@ -16,17 +16,17 @@ job* fifo_hold_queue(job* currentJob) {
     // 72 = H for holding queue
     currentJob->queue = 72;
     
-    if (!headRef) {
-        jobList = currentJob;
-    } else if (!jobList->next) {
-        jobList->next = currentJob;
+    if (!fifoHeadRef) {
+        fifoQueue = currentJob;
+    } else if (!fifoQueue->next) {
+        fifoQueue->next = currentJob;
     } else {
-        headRef = jobList;
-        while (jobList->next) {
-            jobList = jobList->next;
+        fifoHeadRef = fifoQueue;
+        while (fifoQueue->next) {
+            fifoQueue = fifoQueue->next;
         }
-        jobList->next = currentJob;
-        jobList = headRef;
+        fifoQueue->next = currentJob;
+        fifoQueue = fifoHeadRef;
     }
-    return jobList;
+    return fifoQueue;
 }

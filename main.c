@@ -1,6 +1,4 @@
-#include <string.h>
-#include <ctype.h>
-#include <math.h>
+#include "structure.h"
 #include "shortestjobfirst.c"
 #include "firstinout.c"
 #include "readyqueue.c"
@@ -38,8 +36,6 @@ int main() {
             }   
         }
         if(symb1 == 'A' || ((symb1 =='Q')&&(letter != 'C')) || symb1 == 'L' || ((symb1 == 'D') && (arrCount != 2))){
-            printf("HELLO");
-            printf("\n");
             for(int i = 0; i< arrCount; i++){
                 //printf("%d", arr[i]);
             }
@@ -56,18 +52,19 @@ int main() {
                 memset(arr, 0, 6);
                 letter = symb1;
             }else if(letter == 'A'){
-                job* j = {arr[1], arr[0], arr[5], arr[2], arr[3], arr[4]};
-                if (j->memory <= c.memory){
-                    if(j->memory > memory){
-                        if(j->priority == 1){
-                            fifo_hold_queue(j);
+                job j = {arr[1], arr[0], arr[5], arr[2], arr[3], arr[4]};
+                job* jobCreated;
+                if (j.memory <= c.memory){
+                    if(j.memory > memory){
+                        if(j.priority == 1){
+                            fifo_hold_queue(jobCreated);
                         }else{
                             // TODO
                         }
                     }
-                    if (j->devices <= c.devices){
+                    if (j.devices <= c.devices){
                         //send to ready queue
-                        memory -= j->memory;
+                        memory -= j.memory;
                     } else{
                         // TODO
                     }

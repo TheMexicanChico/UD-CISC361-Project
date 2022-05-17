@@ -9,8 +9,8 @@ Find Length of Linked Lists: https://www.geeksforgeeks.org/find-length-of-a-link
 Append to Linked List: https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/
 */
 
-job* headRef = NULL;
-job* jobList = NULL;
+job* sjfHeadRef = NULL;
+job* sjfQueue = NULL;
 
 int list_length(job* head) {
     // find the length of a given linked list
@@ -25,11 +25,11 @@ int list_length(job* head) {
     return length;
 }
 
-void split_list(job* jobList, job** headHalf, job** tailHalf) { // TODO
+void split_list(job* sjfQueue, job** headHalf, job** tailHalf) { // TODO
     // split the linked list
     
-    job* splitX = jobList;
-    job* splitY = jobList->next;
+    job* splitX = sjfQueue;
+    job* splitY = sjfQueue->next;
     
     // find the midpoint of the list 
     //^ Y incremented twice, X incremented once
@@ -42,13 +42,13 @@ void split_list(job* jobList, job** headHalf, job** tailHalf) { // TODO
         }
     }
     // if the list has an odd length, the extra element goes in the first list
-    int listLen = list_length(jobList);
+    int listLen = list_length(sjfQueue);
     if (listLen % 2 != 0) {
         splitX = splitX->next;
     }
     
     // headHalf has access from head to midpoint
-    *headHalf = jobList;
+    *headHalf = sjfQueue;
     // tailHalf has access from midpoint to tail
     *tailHalf = splitX->next;
     // cutoff the head from the tail
@@ -78,11 +78,11 @@ job* merge_queue(job* jobX, job* jobY) {
 	return shorterJob;
 }
 
-void sort_queue(job* jobList) { 
+void sort_queue(job* sjfQueue) { 
     // sort the linked list with MergeSort
 
     // cannot sort less than two nodes
-	if (!(jobList) || !(jobList->next)) { 
+	if (!(sjfQueue) || !(sjfQueue->next)) { 
 		return; 
 	} 
 
@@ -90,13 +90,13 @@ void sort_queue(job* jobList) {
     job* tailHalf;
 
     // split the list
-    split_list(jobList, &headHalf, &tailHalf);
+    split_list(sjfQueue, &headHalf, &tailHalf);
 
     // recursively sort the two lists
-    sort_queue(&headHalf);
-    sort_queue(&tailHalf);
+    sort_queue(headHalf);
+    sort_queue(tailHalf);
 
-    jobList = merge_queue(headHalf, tailHalf);
+    sjfQueue = merge_queue(headHalf, tailHalf);
 }
 
 job* sjf_hold_queue(job* currentJob) {
@@ -107,18 +107,18 @@ job* sjf_hold_queue(job* currentJob) {
     // 72 = H for holding queue
     currentJob->queue = 72;
     
-    if (!headRef) {
-        jobList = currentJob;
-    } else if (!jobList->next) {
-        jobList->next = currentJob;
+    if (!sjfHeadRef) {
+        sjfQueue = currentJob;
+    } else if (!sjfQueue->next) {
+        sjfQueue->next = currentJob;
     } else {
-        headRef = jobList;
-        while (jobList->next) {
-            jobList = jobList->next;
+        sjfHeadRef = sjfQueue;
+        while (sjfQueue->next) {
+            sjfQueue = sjfQueue->next;
         }
-        jobList->next = currentJob;
-        jobList = headRef;
-        sort_queue(jobList);
+        sjfQueue->next = currentJob;
+        sjfQueue = sjfHeadRef;
+        sort_queue(sjfQueue);
     }
-    return jobList;
+    return sjfQueue;
 }

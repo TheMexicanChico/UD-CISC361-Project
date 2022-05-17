@@ -1,6 +1,5 @@
 #ifndef BANKER_H
 #define BANKER_H
-#include "structure.h"
 
 typedef struct JobRef {
     int tableID;
