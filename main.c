@@ -66,27 +66,33 @@ int main()
                         if(j.priority == 1){
                             fifo_hold_queue(&j);
                         }else{
-                            s
+                            sjf_hold_queue(&j);
                         }
                     }
-                    if(j.devices <= c.devices){
+                    else if(j.devices <= c.devices){
                         //send to ready queue
                         memory-= j.memory;
-                    }else{
+                    }else if(j.devices > devices){
+                        //send to hold queue
                     }
                 }
                 memset(arr, 0, 6);
                 letter = symb1;
             }else if(letter == 'Q'){
+                struct request r = {.timeStamp = arr[0], .jobID = arr[1], .devices = arr[2]};
                 memset(arr, 0, 6);
                 letter = symb1;
             }else if(letter == 'L'){
+                struct release l = {.timeStamp = arr[0], .jobID = arr[1], .devices = arr[2]};
                 memset(arr, 0, 6);
                 letter = symb1;
             }else if(letter == 'D'){
                 printf("At time %d:\n Current Available Main Memory = %d\n Current Devices = %d", time, memory,devices);
                 time++;
             }
+        }
+        while(time < arr[0]){
+            if
         }
         }
     fclose (file); 
