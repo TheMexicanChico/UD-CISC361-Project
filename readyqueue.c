@@ -23,5 +23,3 @@ job* ready_queue(job* currentJob) {
     }
     return readyQueue;
 }
-
-
