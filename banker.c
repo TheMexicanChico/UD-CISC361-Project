@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-#include "shortestjobfirst.h"
-#include "firstinout.h"
+#include "stucture.c" // might be fucked
+#include "firstinout.c"
 
 struct JobRef *jobList;
 
