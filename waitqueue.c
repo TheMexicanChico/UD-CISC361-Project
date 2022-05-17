@@ -8,6 +8,7 @@ job* wait_queue(job* currentJob) {
 
     // make sure the job is not connected to anything
     currentJob->next = NULL;
+    currentJob->queue = "W";
     
     if (!headRef) {
         waitQueue = currentJob;
