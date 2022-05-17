@@ -1,3 +1,5 @@
+// Partners: Abel Juarez, Alex Rusin, Ren Ross
+
 #include "structure.h"
 #include "shortestjobfirst.c"
 #include "firstinout.c"
