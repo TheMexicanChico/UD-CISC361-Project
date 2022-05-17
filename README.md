@@ -7,5 +7,6 @@
 |-|-|-
 
 </br>Compile instructions: 
-</br>//   TODO
+gcc main.c -o main
+.\main
 
