@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <limits.h>
 #include "structure.h"
 
 // Sample code, not done yet [Just an idea]

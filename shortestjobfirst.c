@@ -99,7 +99,7 @@ void sort_queue(job* jobList) {
     jobList = merge_queue(headHalf, tailHalf);
 }
 
-void sjf_hold_queue(job* currentJob) {
+job* sjf_hold_queue(job* currentJob) {
     // create, append to, and sort the hold queue
 
     // make sure the job is not connected to anything
@@ -118,4 +118,5 @@ void sjf_hold_queue(job* currentJob) {
         jobList = headRef;
         sort_queue(jobList);
     }
+    return jobList;
 }
