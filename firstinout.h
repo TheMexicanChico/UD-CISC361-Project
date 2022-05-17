@@ -3,4 +3,4 @@
 #include <limits.h>
 #include "structure.h"
 
-void fifo_hold_queue(job* currentJob);
+job* fifo_hold_queue(job* currentJob);

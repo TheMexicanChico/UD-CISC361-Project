@@ -8,7 +8,7 @@ Append to Linked List: https://www.geeksforgeeks.org/linked-list-set-2-inserting
 job* headRef = NULL;
 job* jobList = NULL;
 
-void fifo_hold_queue(job* currentJob) {
+job* fifo_hold_queue(job* currentJob) {
     // create and append to the hold queue
 
     // make sure the job is not connected to anything
@@ -26,4 +26,5 @@ void fifo_hold_queue(job* currentJob) {
         jobList->next = currentJob;
         jobList = headRef;
     }
+    return jobList;
 }
