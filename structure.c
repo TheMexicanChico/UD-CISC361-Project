@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <limits.h>
 #include "structure.h"
 
 void initialize_config(config* head, int size) {

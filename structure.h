@@ -11,11 +11,12 @@ typedef struct config {
 
 typedef struct job {
    int jobID;
-   int priority;
    int arrivalTime;
+   int priority;
    int memory;
    int devices;
-   int runTime;
+   int burstTime;
+   char queue[2];
    struct job* next;
 }job;
 /*
