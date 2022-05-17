@@ -10,4 +10,4 @@ typedef struct JobRef {
     struct JobRef *next;
 }JobRef;
 
-void waitQueue(struct JobRef *current_job);
+void banker(struct JobRef *current_job)
