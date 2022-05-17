@@ -42,12 +42,6 @@ int main()
             }   
         }
         if(symb1 == 'A' || ((symb1 =='Q')&&(letter != 'C')) || symb1 == 'L' || ((symb1 == 'D') && (arrCount != 2))){
-            printf("HELLO");
-            printf("\n");
-            for(int i = 0; i< arrCount; i++){
-                //printf("%d", arr[i]);
-            }
-            printf("\n");
             arrCount = 0;
             if(letter == 'C'){ 
                 c.arrivalTime = arr[0];
@@ -92,7 +86,8 @@ int main()
             }
         }
         while(time < arr[0]){
-            if
+            if()
+            time++;
         }
         }
     fclose (file); 
