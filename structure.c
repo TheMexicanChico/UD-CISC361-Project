@@ -1,38 +1,61 @@
 #include "structure.h"
 
-// Sample code, not done yet [Just an idea]
-void initialize_config(config c[], int size) {
+void initialize_config(config* head, int size) {
+   int arrivalTime, memory, devices, quantumTime;
    for(int i=0; i<size; i++){
-       c[i].arrivalTime=0;
-       c[i].memory=0;
-       c[i].devices=0;
-       c[i].quantumTime=0;
+       arrivalTime=head->arrivalTime;
+       memory=head->memory;
+       devices=head->devices;
+       quantumTime=head->quantumTime;
    }
 }
 
-void initialize_Job(job c[], int size) {
-   for(int i=0; i<size; i++){
-       c[i].jobID=0;
-       c[i].priority=0;
-       c[i].arrivalTime=0;
-       c[i].memory=0;
-       c[i].devices=0;
-       c[i].runTime=0;
+void initialize_Job(job* head, int size) {
+   job* headRef = head;
+   job* currentJob;
+   int arrivalTime, memory, devices, jobID, priority, memory, runtime;
+   while(head){
+      currentJob->jobID=head->jobID;
+      currentJob->priority=head->priority;
+      currentJob->arrivalTime=head->arrivalTime;
+      currentJob->memory=head->memory; // ?
+      currentJob->devices=head->devices;
+      currentJob->runTime=head->runTime;
+   }
+
+}
+
+void initialize_request(job* requestJob, int size) {
+   config* configFile; // remove this after config is initialized 
+
+   configFile->devices += requestJob->devices;
+
+   // quantum interrupted
+   if (configFile->quantumTime <= 0) {
+
+   } else {
+
    }
 }
 
-void initialize_request(request c[], int size) {
-   for(int i=0; i<size; i++){
-       c[i].timeStamp=0;
-       c[i].jobID=0;
-       c[i].devices=0;
-   }
-}
+void initialize_release(job* releaseJob, int size) {
+   config* configFile; // remove this after config is initialized 
 
-void initialize_release(release c[], int size) {
-   for(int i=0; i<size; i++){
-      c[i].timeStamp=0;
-      c[i].jobID=0;
-      c[i].devices=0;
+   // quantum interrupted
+   int t = 0;
+   if (configFile->quantumTime <= configFile->) {
+      t = t + configFile->quantumTime;
+      configFile->devices += releaseJob->devices;
+      //releaseJob->next = releaseJob->jobID;
+   } else {
+      t = t + ;
+      waitTime = t -
+      
+      //releaseJob->next = releaseJob->jobID;
+      //releaseJob->arrivalTime += configFile->quantumTime;
+      //releaseJob-> = NULL;
    }
+   // everytime someting 
+   // wait queue disrrutption 
+
 }
