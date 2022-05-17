@@ -7,6 +7,6 @@
 |-|-|-
 
 </br>Compile instructions: 
-gcc main.c -o main
-.\main
+</br>gcc main.c -o main
+</br>.\main
 
