@@ -6,21 +6,12 @@
 
 struct JobRef *jobList;
 
-/*
-void initialize_request() {
-    jobList = malloc(sizeof(*jobList));
-    jobList->head = jobList;
-    jobList->tail = jobList;
-    jobList->next = NULL;
-}
-*/
-
 void banker(struct JobRef *current_job) {
     int i, j, k;
     //n = 5; // Number of processes
     //m = 3; // Number of resources
-    int n = ;
-    int m = ;
+    int n = 0;
+    int m = 0;
  
     int max[i][j];
     int alloc[i][j];

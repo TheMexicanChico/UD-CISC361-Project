@@ -20,7 +20,7 @@ void initialize_Job(job* head, int size) {
       currentJob->arrivalTime=head->arrivalTime;
       currentJob->memory=head->memory; // ?
       currentJob->devices=head->devices;
-      currentJob->runTime=head->runTime;
+      currentJob->burstTime=head->burstTime;
    }
 
 }
@@ -40,16 +40,17 @@ void initialize_request(job* requestJob, int size) {
 
 void initialize_release(job* releaseJob, int size) {
    config* configFile; // remove this after config is initialized 
-
+   int qTime = configFile->quantumTime;
    // quantum interrupted
    int t = 0;
+   /*
    if (configFile->quantumTime <= configFile->) {
       t = t + configFile->quantumTime;
       configFile->devices += releaseJob->devices;
       //releaseJob->next = releaseJob->jobID;
    } else {
-      t = t + ;
-      waitTime = t -
+      // t = t + 1;
+      // waitTime = t - 1
       
       //releaseJob->next = releaseJob->jobID;
       //releaseJob->arrivalTime += configFile->quantumTime;
@@ -57,5 +58,5 @@ void initialize_release(job* releaseJob, int size) {
    }
    // everytime someting 
    // wait queue disrrutption 
-
+   */
 }

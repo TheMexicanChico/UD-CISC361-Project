@@ -37,5 +37,5 @@ typedef struct release {
 */
 void initialize_config(config* head, int size);
 void initialize_Job(job* head, int size);
-void initialize_request(request* head, int size);
-void initialize_release(release* head, int size);
+void initialize_request(job* head, int size);
+void initialize_release(job* head, int size);

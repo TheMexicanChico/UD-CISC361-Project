@@ -60,13 +60,13 @@ int main()
                 memset(arr, 0, 6);
                 letter = symb1;
             }else if(letter == 'A'){
-                struct job j = {.arrivalTime = arr[0], .jobID = arr[1], .memory = arr[2], .devices = arr[3], .runTime = arr[4], .priority = arr[5]};
+                struct job j = {.arrivalTime = arr[0], .jobID = arr[1], .memory = arr[2], .devices = arr[3], .burstTime = arr[4], .priority = arr[5]};
                 if(j.memory <= c.memory){
                     if(j.memory > memory){
                         if(j.priority == 1){
                             fifo_hold_queue(&j);
                         }else{
-                            s
+                            // TODO
                         }
                     }
                     if(j.devices <= c.devices){
