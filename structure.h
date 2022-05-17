@@ -19,20 +19,23 @@ typedef struct job {
    int queue;
    struct job* next;
 }job;
-
+/*
 typedef struct request {
    int timeStamp;
    int jobID;
    int devices;
+   struct request* next;
 }request;
 
 typedef struct release {
    int timeStamp;
+   int memory;
    int jobID;
    int devices; 
+   struct release* next;
 }release;
-
-void initialize_config(config c[], int size);
-void initialize_Job(job c[], int size);
-void initialize_request(request c[], int size);
-void initialize_release(release c[], int size);
+*/
+void initialize_config(config* head, int size);
+void initialize_Job(job* head, int size);
+void initialize_request(job* head, int size);
+void initialize_release(job* head, int size);
