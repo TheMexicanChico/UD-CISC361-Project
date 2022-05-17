@@ -8,6 +8,7 @@ job* ready_queue(job* currentJob) {
 
     // make sure the job is not connected to anything
     currentJob->next = NULL;
+    currentJob->queue = "R";
     
     if (!headRef) {
         readyQueue = currentJob;

@@ -16,7 +16,7 @@ typedef struct job {
    int memory;
    int devices;
    int burstTime;
-   char queue[2];
+   int queue;
    struct job* next;
 }job;
 /*

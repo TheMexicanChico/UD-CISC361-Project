@@ -7,6 +7,8 @@
 #include "firstinout.c"
 #include <limits.h>
 #include "shortestjobfirst.h"
+#include "readyqueue.c"
+
 int main()
 {
 //https://stackoverflow.com/questions/13499866/read-from-text-file-only-numbers-in-c
@@ -97,4 +99,27 @@ int main()
         //printf("\n");
     }
     //printf("%d", c.arrivalTime);
+}
+
+
+// when reading in jobs, first one with allowed memory allocation goes right to ready queue
+void get_job(job* jobReady, config c) {
+    int qTime = c.quantumTime;
+    // 67 = C for running on the CPU
+    jobReady->queue = 67;
+    
+    while (qTime) {
+        qTime -= 1;
+        // 
+        jobReady->burstTime -= 1;
+        if (jobReady->burstTime == 0) {
+            // terminate job
+        } 
+    }
+    // context switch
+    if (jobReady->burstTime > 0) {
+        // 82 = "R" for ready queue
+        jobReady->queue = 82;
+        jobReady = ready_queue(jobReady);
+    }
 }

@@ -13,6 +13,8 @@ job* fifo_hold_queue(job* currentJob) {
 
     // make sure the job is not connected to anything
     currentJob->next = NULL;
+    // 72 = H for holding queue
+    currentJob->queue = 72;
     
     if (!headRef) {
         jobList = currentJob;
